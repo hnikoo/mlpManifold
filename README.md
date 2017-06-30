@@ -17,7 +17,7 @@ s they do in back propagation algorithm so that they can
 
 # Data Generation
 we generate two classes data with similar manifolds in 2D space. They live in a sinusoid manifold with close borders so that it is not possible to seperate them linearly in original 2D space.
-''' python
+``` python
 def gen_data(): 
     # generate data ....
     print('Genete data ...')
@@ -38,7 +38,7 @@ def gen_data():
     Xtest = XX[idx_test,]
     ytest = YY[idx_test,]
     return Xtrain,ytrain,Xval,yval,Xtest,ytest
-'''
+```
 <p align="center">
   <img "Original 2D space of data with sinusoid manifold." src="frames/0.png" />
 </p>
