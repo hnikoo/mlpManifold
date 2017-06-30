@@ -1,29 +1,29 @@
 # mlpManifold
 In this example I demonstrate how a multi layer perceptron can learns to change manifold of data distribution.
-
+ 
 # Requirements
 * keras
 * tensorflow
 * matplotlib
 * numpy
 * scipy
-
-
-
+ 
+ 
+ 
 # Introduction
-In general most deep learning models are trying to learn the manifold of data. Supervised algorithms are trying to learn to project data points into a new manifold so that they can seperate them to their corresponding classes. Similar to that Unsupervised alogrihtms for example auto-encoders and restricted restricted boltzman machines(RBM) are trying to project data points into a simpler manifold. However unsuvervised algorithms don't use label singal information a 
+In general most deep learning models are trying to learn the manifold of data. Supervised algorithms are trying to learn to project data points into a new manifold so that they can separate them to their corresponding classes. These models use label for computing error and signal back to adjust the manifold transformation (backprop algorithm). Similarly Unsupervised algorithms for example auto-encoders and restricted restricted boltzmann machines(RBM) are trying to project data points into a simpler manifold. However they don't have label information, therefore they use the data point themselve. For instance RBM tries to estimate the data generating distribution and denoising autoencoders learn about data manifolds by projecting noisy data points back to the 'true' manifold. 
 
-s they do in back propagation algorithm so that they can 
-
+In this simple example code we learn how to visualize the manipulation of manifold of data during training of an multi-layer perecptron. we train the model on a simple data with two classes that live in a 2D space. These two classes have a sinusoid manifold. The task of the mlp model is to project them into a new space where they are linearly seperable. 
+ 
 # Data Generation
-we generate two classes data with similar manifolds in 2D space. They live in a sinusoid manifold with close borders so that it is not possible to seperate them linearly in original 2D space.
+we generate two classes data with similar manifolds in 2D space. They live in a sinusoid manifold with closed borders so that it is not possible to separate them linearly in original 2D space.
 ``` python
-def gen_data(): 
+def gen_data():
     # generate data ....
     print('Genete data ...')
     X = np.arange(0, 2, 0.001)
     Y1 = 0.5 + np.sin(np.pi * X)
-    Y2 = 1.0 + np.sin(np.pi * X) 
+    Y2 = 1.0 + np.sin(np.pi * X)
     XX = np.concatenate((X, X), axis=0)
     YY = np.concatenate((Y1,Y2),axis=0)
     XX = np.concatenate((np.expand_dims(XX,axis=1),np.expand_dims(YY,axis=1)),axis=1)
@@ -42,10 +42,10 @@ def gen_data():
 <p align="center">
   <img "Original 2D space of data with sinusoid manifold." src="frames/0.png" />
 </p>
-
+ 
 # Training Model
-Idefine a very simple mlp model with 2 layers.The non linearity of middle layer are rectified linear and last layer is sigmoid for binnary classification.I train the model by minimizing the cross-entropy of last layer and labels. During training we after each epoch we get the last layer representaion of model as the new manifold of data. Later I visualize these representations later.
-
+Idefine a very simple mlp model with 2 layers.The non linearity of middle layer are rectified linear and last layer is sigmoid for binary classification.I train the model by minimizing the cross-entropy of last layer and labels. During training we after each epoch we get the last layer representation of model as the new manifold of data. Later I visualize these representations later.
+ 
 ``` python
 def mlp_model():
     # define mlp model
@@ -58,11 +58,13 @@ def mlp_model():
     repmodel = Model(inL,x)
     print model.summary()
     return model,repmodel
-``` 
-
+```
+ 
 # Results
-We could se evolution of represention learned by the model. The mlp is trying to project them into a representation that can be seperated linearly in the last layer.
+We could se evolution of representation learned by the model. The mlp is trying to project them into a representation that can be separated linearly in the last layer.
 <p align="center">
   <img "Original 2D space of data with sinusoid manifold." src="frames/manifold.gif" />
 </p>
-
+ 
+ 
+ 
