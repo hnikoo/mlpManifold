@@ -43,6 +43,26 @@ def gen_data():
   <img "Original 2D space of data with sinusoid manifold." src="frames/0.png" />
 </p>
 
-# Model
+# Training Model
+Idefine a very simple mlp model with 2 layers.The non linearity of middle layer are rectified linear and last layer is sigmoid for binnary classification.I train the model by minimizing the cross-entropy of last layer and labels. During training we after each epoch we get the last layer representaion of model as the new manifold of data. Later I visualize these representations later.
 
+``` python
+def mlp_model():
+    # define mlp model
+    print('Build model...')
+    inL = Input(shape=(2,))
+    x = Dense(100,activation='relu',kernel_initializer=RandomNormal(mean=0.0, stddev=0.01, seed=77))(inL)
+    x = Dense(2,activation='relu',kernel_initializer=RandomNormal(mean=0.0, stddev=0.01, seed=77))(x)
+    out = Dense(1,activation='sigmoid',kernel_initializer=RandomNormal(mean=0.0, stddev=0.01, seed=77))(x)
+    model = Model(inL,out)
+    repmodel = Model(inL,x)
+    print model.summary()
+    return model,repmodel
+``` 
+
+# Results
+We could se evolution of represention learned by the model. The mlp is trying to project them into a representation that can be seperated linearly in the last layer.
+<p align="center">
+  <img "Original 2D space of data with sinusoid manifold." src="frames/manifold.gif" />
+</p>
 
