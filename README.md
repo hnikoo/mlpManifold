@@ -39,8 +39,9 @@ def gen_data():
     ytest = YY[idx_test,]
     return Xtrain,ytrain,Xval,yval,Xtest,ytest
 '''
-
-![alt text](frames/0.png?raw=true "Original 2D space of data with sinusoid manifold.")
+<p align="center">
+  <img "Original 2D space of data with sinusoid manifold." src="frames/0.png" />
+</p>
 
 # Model
 
