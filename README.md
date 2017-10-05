@@ -40,7 +40,7 @@ def gen_data():
     return Xtrain,ytrain,Xval,yval,Xtest,ytest
 ```
 <p align="center">
-  <img "Original 2D space of data with sinusoid manifold." src="frames/0.png" />
+  <img "Original 2D space of data with sinusoid manifold." src="mlp_manifold/frames/0.png" />
 </p>
  
 # Training Model
@@ -63,7 +63,7 @@ def mlp_model():
 # Results
 We could see the evolution of representation learned by the model. The mlp is trying to project them into a representation that can be separated linearly in the last layer.
 <p align="center">
-  <img "Original 2D space of data with sinusoid manifold." src="frames/manifold.gif" />
+  <img "Original 2D space of data with sinusoid manifold." src="mlp_manifold/frames/manifold.gif" />
 </p>
  
  
